@@ -5,10 +5,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>白庭毓个人作品集</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+/* Use system fonts for instant load - no external font requests */
+:root {
+  --font-serif: "Noto Serif SC", "Songti SC", "SimSun", "STSong", "PingFang SC", "Microsoft YaHei", serif;
+  --font-italic: Georgia, "Times New Roman", Times, serif;
+}
 :root {
   --bg: #0D0D0D;
   --surface: #161616;
@@ -25,7 +28,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  font-family: var(--font-serif);
   background: var(--bg);
   color: var(--text);
   line-height: 1.7;
@@ -53,7 +56,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('images/temple-monks.jpg') center center;
+  background: url('images/temple-monks.webp') center center;
   background-size: cover;
   filter: brightness(0.35) saturate(0.8);
   z-index: 0;
@@ -81,7 +84,7 @@ body {
 }
 
 .hero-title-en {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-italic);
   font-size: 22px;
   font-weight: 300;
   font-style: italic;
@@ -91,7 +94,7 @@ body {
 }
 
 .hero-subtitle {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-italic);
   font-size: 16px;
   font-weight: 300;
   font-style: italic;
@@ -113,7 +116,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-italic);
   font-size: 11px;
   color: var(--muted);
   letter-spacing: 3px;
@@ -199,7 +202,7 @@ body {
 }
 
 .section-num {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-italic);
   font-size: 14px;
   color: var(--accent);
   letter-spacing: 4px;
@@ -216,7 +219,7 @@ body {
 }
 
 .section-title-en {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-italic);
   font-size: 15px;
   color: var(--muted);
   letter-spacing: 4px;
@@ -252,12 +255,27 @@ body {
   border-radius: 2px;
 }
 
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 14px;
+  position: relative;
+  cursor: zoom-in;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--surface);
+}
+
 .gallery-item img {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s ease;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s ease, opacity 0.6s ease;
   filter: brightness(0.92);
+  opacity: 0;
+}
+
+.gallery-item img.loaded {
+  opacity: 1;
 }
 
 .gallery-item:hover img {
@@ -301,7 +319,7 @@ body {
 }
 
 .gallery-item .caption .meta {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-italic);
   font-size: 11px;
   color: rgba(255,255,255,0.6);
   font-style: italic;
@@ -367,7 +385,7 @@ body {
 }
 
 .about-quote {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-italic);
   font-size: 18px;
   font-style: italic;
   color: var(--text);
@@ -458,7 +476,7 @@ footer {
 footer .contact {
   margin-bottom: 20px;
   color: var(--text-2);
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-italic);
   font-size: 13px;
   letter-spacing: 1px;
 }
@@ -469,7 +487,7 @@ footer .contact span {
 }
 
 footer .copyright {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-italic);
   font-style: italic;
   font-size: 12px;
   color: var(--muted);
@@ -510,8 +528,8 @@ footer .copyright {
   </div>
   <div class="gallery">
 
-    <div class="gallery-item" onclick="openLightbox('images/nature-rhino.jpg', '监狱')">
-      <img src="images/nature-rhino.jpg" alt="监狱" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/nature-rhino.webp', '监狱')">
+      <img src="images/nature-rhino.webp" alt="监狱" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">监狱</div>
@@ -519,8 +537,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/street-hk-01.jpg', '桥底')">
-      <img src="images/street-hk-01.jpg" alt="桥底" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/street-hk-01.webp', '桥底')">
+      <img src="images/street-hk-01.webp" alt="桥底" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">桥底</div>
@@ -528,8 +546,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/travel-hk-taxi.jpg', '红斑马')">
-      <img src="images/travel-hk-taxi.jpg" alt="红斑马" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/travel-hk-taxi.webp', '红斑马')">
+      <img src="images/travel-hk-taxi.webp" alt="红斑马" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">红斑马</div>
@@ -537,8 +555,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/travel-jeju-harbor.jpg', '牛岛')">
-      <img src="images/travel-jeju-harbor.jpg" alt="牛岛" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/travel-jeju-harbor.webp', '牛岛')">
+      <img src="images/travel-jeju-harbor.webp" alt="牛岛" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">牛岛</div>
@@ -546,8 +564,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/grassland-motorcycle.jpg', '时间尽头')">
-      <img src="images/grassland-motorcycle.jpg" alt="时间尽头" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/grassland-motorcycle.webp', '时间尽头')">
+      <img src="images/grassland-motorcycle.webp" alt="时间尽头" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">时间尽头</div>
@@ -555,8 +573,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/temple-bw.jpg', '千年')">
-      <img src="images/temple-bw.jpg" alt="千年" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/temple-bw.webp', '千年')">
+      <img src="images/temple-bw.webp" alt="千年" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">千年</div>
@@ -564,8 +582,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/temple-monks.jpg', '朱衣入古寺')">
-      <img src="images/temple-monks.jpg" alt="朱衣入古寺" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/temple-monks.webp', '朱衣入古寺')">
+      <img src="images/temple-monks.webp" alt="朱衣入古寺" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">朱衣入古寺</div>
@@ -573,8 +591,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/portrait-night-wedding.jpg', '平原焰火')">
-      <img src="images/portrait-night-wedding.jpg" alt="平原焰火" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/portrait-night-wedding.webp', '平原焰火')">
+      <img src="images/portrait-night-wedding.webp" alt="平原焰火" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">平原焰火</div>
@@ -582,8 +600,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/temple-carvings.jpg', '万古观瞻')">
-      <img src="images/temple-carvings.jpg" alt="万古观瞻" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/temple-carvings.webp', '万古观瞻')">
+      <img src="images/temple-carvings.webp" alt="万古观瞻" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">万古观瞻</div>
@@ -591,8 +609,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/nature-museum.jpg', '鄂尔多斯')">
-      <img src="images/nature-museum.jpg" alt="鄂尔多斯" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/nature-museum.webp', '鄂尔多斯')">
+      <img src="images/nature-museum.webp" alt="鄂尔多斯" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">鄂尔多斯</div>
@@ -612,8 +630,8 @@ footer .copyright {
   </div>
   <div class="gallery">
 
-    <div class="gallery-item" onclick="openLightbox('images/nature-dai-temple.jpg', '傣')">
-      <img src="images/nature-dai-temple.jpg" alt="傣" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/nature-dai-temple.webp', '傣')">
+      <img src="images/nature-dai-temple.webp" alt="傣" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">傣</div>
@@ -621,8 +639,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/nature-angkor-lake.jpg', '吴哥')">
-      <img src="images/nature-angkor-lake.jpg" alt="吴哥" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/nature-angkor-lake.webp', '吴哥')">
+      <img src="images/nature-angkor-lake.webp" alt="吴哥" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">吴哥</div>
@@ -630,8 +648,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/nature-deer-forest.jpg', '林间有鹿')">
-      <img src="images/nature-deer-forest.jpg" alt="林间有鹿" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/nature-deer-forest.webp', '林间有鹿')">
+      <img src="images/nature-deer-forest.webp" alt="林间有鹿" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">林间有鹿</div>
@@ -639,8 +657,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/nature-deer-closeup.jpg', '黏土小鹿')">
-      <img src="images/nature-deer-closeup.jpg" alt="黏土小鹿" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/nature-deer-closeup.webp', '黏土小鹿')">
+      <img src="images/nature-deer-closeup.webp" alt="黏土小鹿" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">黏土小鹿</div>
@@ -648,8 +666,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/nature-deer-ruins.jpg', '废园有鹿')">
-      <img src="images/nature-deer-ruins.jpg" alt="废园有鹿" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/nature-deer-ruins.webp', '废园有鹿')">
+      <img src="images/nature-deer-ruins.webp" alt="废园有鹿" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">废园有鹿</div>
@@ -657,8 +675,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/nature-fence.jpg', '枯草与围栏')">
-      <img src="images/nature-fence.jpg" alt="枯草与围栏" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/nature-fence.webp', '枯草与围栏')">
+      <img src="images/nature-fence.webp" alt="枯草与围栏" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">枯草与围栏</div>
@@ -666,8 +684,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/nature-tianchi.jpg', '天池傍晚')">
-      <img src="images/nature-tianchi.jpg" alt="天池傍晚" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/nature-tianchi.webp', '天池傍晚')">
+      <img src="images/nature-tianchi.webp" alt="天池傍晚" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">天池傍晚</div>
@@ -675,8 +693,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/nature-horse-ridge.jpg', '走马')">
-      <img src="images/nature-horse-ridge.jpg" alt="走马" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/nature-horse-ridge.webp', '走马')">
+      <img src="images/nature-horse-ridge.webp" alt="走马" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">走马</div>
@@ -684,8 +702,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/nature-lake-sunset.jpg', '没白活！')">
-      <img src="images/nature-lake-sunset.jpg" alt="没白活" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/nature-lake-sunset.webp', '没白活！')">
+      <img src="images/nature-lake-sunset.webp" alt="没白活" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">没白活！</div>
@@ -693,8 +711,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/nature-grassland-overview.jpg', '平芜')">
-      <img src="images/nature-grassland-overview.jpg" alt="平芜" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/nature-grassland-overview.webp', '平芜')">
+      <img src="images/nature-grassland-overview.webp" alt="平芜" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">平芜</div>
@@ -702,8 +720,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/nature-bird-water.jpg', '飞鸟与鱼')">
-      <img src="images/nature-bird-water.jpg" alt="飞鸟与鱼" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/nature-bird-water.webp', '飞鸟与鱼')">
+      <img src="images/nature-bird-water.webp" alt="飞鸟与鱼" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">飞鸟与鱼</div>
@@ -723,8 +741,8 @@ footer .copyright {
   </div>
   <div class="gallery">
 
-    <div class="gallery-item" onclick="openLightbox('images/portrait-hanfu-side.jpg', '求佛')">
-      <img src="images/portrait-hanfu-side.jpg" alt="求佛" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/portrait-hanfu-side.webp', '求佛')">
+      <img src="images/portrait-hanfu-side.webp" alt="求佛" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">求佛</div>
@@ -732,8 +750,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/portrait-hanfu-tree.jpg', '托遗响于悲风')">
-      <img src="images/portrait-hanfu-tree.jpg" alt="托遗响于悲风" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/portrait-hanfu-tree.webp', '托遗响于悲风')">
+      <img src="images/portrait-hanfu-tree.webp" alt="托遗响于悲风" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">托遗响于悲风</div>
@@ -741,8 +759,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/portrait-qing-style.jpg', '春之女儿')">
-      <img src="images/portrait-qing-style.jpg" alt="春之女儿" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/portrait-qing-style.webp', '春之女儿')">
+      <img src="images/portrait-qing-style.webp" alt="春之女儿" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">春之女儿</div>
@@ -750,8 +768,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/portrait-jk-forest.jpg', '少女前进吧')">
-      <img src="images/portrait-jk-forest.jpg" alt="少女前进吧" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/portrait-jk-forest.webp', '少女前进吧')">
+      <img src="images/portrait-jk-forest.webp" alt="少女前进吧" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">少女前进吧</div>
@@ -759,8 +777,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/portrait-jk-night.jpg', '小径分岔的花园')">
-      <img src="images/portrait-jk-night.jpg" alt="小径分岔的花园" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/portrait-jk-night.webp', '小径分岔的花园')">
+      <img src="images/portrait-jk-night.webp" alt="小径分岔的花园" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">小径分岔的花园</div>
@@ -768,8 +786,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/portrait-jk-sakura.jpg', '珞珈山下')">
-      <img src="images/portrait-jk-sakura.jpg" alt="珞珈山下" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/portrait-jk-sakura.webp', '珞珈山下')">
+      <img src="images/portrait-jk-sakura.webp" alt="珞珈山下" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">珞珈山下</div>
@@ -789,8 +807,8 @@ footer .copyright {
   </div>
   <div class="gallery">
 
-    <div class="gallery-item" onclick="openLightbox('images/daily-jeju-sakura.jpg', 'the outside')">
-      <img src="images/daily-jeju-sakura.jpg" alt="the outside" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/daily-jeju-sakura.webp', 'the outside')">
+      <img src="images/daily-jeju-sakura.webp" alt="the outside" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">the outside</div>
@@ -798,8 +816,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/travel-jeju-street.jpg', '济州夏日')">
-      <img src="images/travel-jeju-street.jpg" alt="济州夏日" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/travel-jeju-street.webp', '济州夏日')">
+      <img src="images/travel-jeju-street.webp" alt="济州夏日" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">济州夏日</div>
@@ -807,8 +825,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/daily-park.jpg', '地坛')">
-      <img src="images/daily-park.jpg" alt="地坛" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/daily-park.webp', '地坛')">
+      <img src="images/daily-park.webp" alt="地坛" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">地坛</div>
@@ -816,8 +834,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/daily-cat.jpg', '你要领养小猫吗')">
-      <img src="images/daily-cat.jpg" alt="你要领养小猫吗" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/daily-cat.webp', '你要领养小猫吗')">
+      <img src="images/daily-cat.webp" alt="你要领养小猫吗" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">你要领养小猫吗</div>
@@ -825,8 +843,8 @@ footer .copyright {
       </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/street-hk-02.jpg', '中环午后')">
-      <img src="images/street-hk-02.jpg" alt="中环午后" loading="lazy">
+    <div class="gallery-item" onclick="openLightbox('images/street-hk-02.webp', '中环午后')">
+      <img src="images/street-hk-02.webp" alt="中环午后" loading="lazy">
       <div class="overlay"></div>
       <div class="caption">
         <div class="title">中环午后</div>
@@ -888,6 +906,24 @@ footer .copyright {
 </footer>
 
 <script>
+// Lazy image loading with fade-in effect
+document.addEventListener('DOMContentLoaded', function() {
+  const images = document.querySelectorAll('.gallery-item img');
+  images.forEach(function(img) {
+    if (img.complete) {
+      img.classList.add('loaded');
+    } else {
+      img.addEventListener('load', function() {
+        img.classList.add('loaded');
+      });
+    }
+  });
+  
+  // Hero background preload
+  const heroBg = new Image();
+  heroBg.src = 'images/temple-monks.webp';
+});
+
 // Lightbox
 function openLightbox(src, caption) {
   document.getElementById('lightbox-img').src = src;
